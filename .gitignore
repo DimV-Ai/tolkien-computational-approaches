@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data / corpus
+data/
+corpus/
+*.txt
+
+# Models
+models/
+*.pt
+*.bin
+*.safetensors
+
+# Logs
+*.log
+
+# Mac files
+.DS_Store
