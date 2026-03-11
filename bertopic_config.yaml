@@ -1,0 +1,26 @@
+global:
+  seed: 42
+
+umap:
+  # Dimensionality reduction settings for BERTopic
+  n_neighbors: 13
+  n_components: 5
+  min_dist: 0.0
+  metric: cosine
+  low_memory: false
+  random_state: 42
+
+hdbscan:
+  min_cluster_size: 3
+  min_samples: 1
+  cluster_selection_epsilon: 0.3
+
+bertopic:
+  # Core BERTopic parameters
+  language: english
+  top_n_words: 30
+  nr_topics: null   # set to a number if topic reduction is desired
+
+  input:
+  format: tokenized_corpus
+  join_tokens_with_space: true

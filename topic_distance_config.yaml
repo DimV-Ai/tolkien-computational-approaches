@@ -1,0 +1,28 @@
+
+# Configuration for measuring distances between BERTopic topics
+# using a separately trained Word2Vec model.
+
+word2vec:
+  # Path to a Word2Vec binary model trained on the Tolkien corpus.
+  # The model itself is not included in the repository due to size and corpus copyright.
+  model_path: models/tolkien_w2v.bin
+  format: word2vec_bin
+  binary: true
+
+input:
+  top_n_words: 15
+  exclude_outlier_topic: true
+  outlier_topic_label: -1
+
+vectorization:
+  topic_vector_method: mean_top_word_vectors
+  missing_word_strategy: skip
+  require_min_words: 3
+
+similarity:
+  distance_metric: cosine
+
+output:
+  save_topic_vectors: false
+  save_distance_matrix: true
+  distance_matrix_filename: topic_distance_matrix.csv
