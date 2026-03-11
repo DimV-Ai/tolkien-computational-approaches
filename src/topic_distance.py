@@ -38,6 +38,7 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 import yaml
+import ast
 from gensim.models import KeyedVectors
 from sklearn.metrics.pairwise import cosine_distances
 
@@ -64,14 +65,21 @@ def load_word2vec_model(config: dict) -> KeyedVectors:
 
 
 def parse_topic_words(topic_words: str | Iterable[str]) -> list[str]:
-    """Normalize topic words into a simple list of strings.
+    """Normalize topic words into a simple list of strings."""
 
-    Supports either:
-    - a comma-separated string, e.g. ``"frodo, sam, mordor"``
-    - an iterable of strings
-    """
     if isinstance(topic_words, str):
-        return [word.strip() for word in topic_words.split(",") if word.strip()]
+        topic_words = topic_words.strip()
+
+        # Handle BERTopic list-like strings: "['frodo', 'sam', 'mordor']"
+        if topic_words.startswith("[") and topic_words.endswith("]"):
+            try:
+                topic_words = ast.literal_eval(topic_words)
+            except Exception:
+                pass
+
+        # Handle comma-separated strings
+        if isinstance(topic_words, str):
+            return [word.strip() for word in topic_words.split(",") if word.strip()]
 
     return [str(word).strip() for word in topic_words if str(word).strip()]
 
