@@ -1,0 +1,26 @@
+
+
+# Configuration for exporting BERTopic topic relationships to Gephi-ready files.
+# This pipeline assumes a topic–topic distance matrix has already been computed.
+
+input:
+  distance_matrix_path: outputs/topic_distance_matrix.csv
+  topic_info_path: outputs/bertopic/topic_info.csv
+
+conversion:
+  # similarity = 1 - distance
+  convert_distance_to_similarity: true
+
+filtering:
+  exclude_self_links: true
+  similarity_threshold: 0.60
+  top_k_edges_per_topic: null
+
+nodes:
+  include_topic_size: true
+  include_representation: true
+
+output:
+  output_dir: outputs/network
+  edges_filename: topic_edges.csv
+  nodes_filename: topic_nodes.csv
