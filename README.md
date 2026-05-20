@@ -7,6 +7,7 @@ At this stage, the repository contains one cleaned evaluation notebook.
 ## Contents
 
 - `notebooks/01_model_evaluation.ipynb`
+- `notebooks/02_anchored_sentiment_analysis.ipynb`
 
 ## Notebook: `01_model_evaluation.ipynb`
 
