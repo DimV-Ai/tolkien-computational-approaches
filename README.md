@@ -83,7 +83,6 @@ The baseline model is loaded from Hugging Face:
 
 The Tolkien-adapted models are expected to be stored locally. The notebook currently uses paths such as:
 
-- `../models/tolkien_sentence_transformer`
 - `../models/tolkien_sentence_transformer_epoch_1`
 - `../models/tolkien_sentence_transformer_epoch_2`
 - `../models/tolkien_sentence_transformer_epoch_4`
