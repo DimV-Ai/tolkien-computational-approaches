@@ -1,0 +1,5 @@
+sentence_text;gold_label;split
+<positive anchor sentence>;positive;anchor
+<negative anchor sentence>;negative;anchor
+<positive held-out test sentence>;positive;test
+<negative held-out test sentence>;negative;test
