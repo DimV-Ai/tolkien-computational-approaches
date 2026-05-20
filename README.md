@@ -6,8 +6,17 @@ The repository currently contains two cleaned notebooks:
 
 ## Contents
 
-- `notebooks/01_model_evaluation.ipynb`
-- `notebooks/02_anchored_sentiment_analysis.ipynb`
+- `notebooks/01_model_evaluation.ipynb`  
+  Held-out evaluation of MiniLM and Tolkien-adapted sentence-transformer models.
+
+- `notebooks/02_anchored_sentiment_analysis.ipynb`  
+  Anchored sentiment trajectory analysis over segmented literary text.
+
+- `src/`  
+  Reusable Python code for topic-modelling-related experiments, including BERTopic topic-distance analysis.
+
+- `configs/`  
+  Configuration files for reproducible experiment settings, including BERTopic/topic-distance parameters.
 
 ## Notebook: `01_model_evaluation.ipynb`
 
@@ -51,6 +60,16 @@ The scoring method computes:
 `sentiment_score = mean_similarity_to_positive_anchors - mean_similarity_to_negative_anchors`
 
 Positive scores indicate that a segment is closer to the positive anchors, while negative scores indicate that it is closer to the negative anchors.
+
+## Supporting code: `src/` and `configs/`
+
+In addition to the notebooks, this repository includes reusable code and configuration files for topic-modelling-related experiments.
+
+The `src/` folder contains Python scripts intended to move repeated logic out of notebooks and into reusable modules. At this stage, this includes code connected to BERTopic topic-distance analysis, where topic representations can be compared using embedding-based similarity.
+
+The `configs/` folder stores experiment settings separately from the code. This makes it easier to rerun or modify experiments without changing the main scripts directly.
+
+These files are part of the broader repository structure, but the currently documented notebooks focus on model evaluation and anchored sentiment trajectory analysis.
 
 ## Data
 
