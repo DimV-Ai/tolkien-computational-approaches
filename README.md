@@ -1,8 +1,8 @@
 # Tolkien Computational Approaches
 
-This repository contains computational notebooks for experiments in literary NLP, focusing on sentence embeddings and sentiment-related evaluation in *The Lord of the Rings*.
+This repository contains computational notebooks for experiments in literary NLP, focusing on sentence embeddings, anchor-based sentiment evaluation, and sentiment trajectory analysis in *The Lord of the Rings*.
 
-At this stage, the repository contains one cleaned evaluation notebook.
+The repository currently contains two cleaned notebooks:
 
 ## Contents
 
@@ -31,22 +31,49 @@ The notebook includes:
 - comparing the baseline and selected Tolkien-adapted model using McNemar's test;
 - a qualitative retrieval comparison between the baseline and selected Tolkien-adapted model.
 
+## Notebook: `02_anchored_sentiment_analysis.ipynb`
+
+This notebook computes and visualises an anchored sentiment trajectory over a literary text.
+
+The notebook includes:
+
+- optional preprocessing templates for TEI/XML and HTML sources;
+- a prepared plain-text parser for the local corpus format used in this project;
+- dialogue-aware segmentation while preserving chapter boundaries;
+- construction of a standard `segments_df` dataframe;
+- loading local positive and negative anchor sentences from `data/anchors.csv`;
+- computing anchored sentiment scores for each segment;
+- smoothing the trajectory with a rolling window;
+- visualising the full sentiment trajectory.
+
+The scoring method computes:
+
+`sentiment_score = mean_similarity_to_positive_anchors - mean_similarity_to_negative_anchors`
+
+Positive scores indicate that a segment is closer to the positive anchors, while negative scores indicate that it is closer to the negative anchors.
+
 ## Data
 
 The full text data and manually selected sentence examples are **not included** in this repository because they are drawn from copyrighted literary text.
 
-To run the notebook locally, provide an evaluation CSV with these columns:
+To run `01_model_evaluation.ipynb`, provide an evaluation CSV with these columns:
 
 - `sentence_text`: the sentence to evaluate;
 - `gold_label`: the manually assigned label, either `positive` or `negative`;
 - `split`: the role of the sentence, either `anchor` or `test`.
 
-The `split` column separates:
+To run `02_anchored_sentiment_analysis.ipynb`, provide:
 
-- `anchor`: reference examples used by the scoring procedure;
-- `test`: held-out examples used only for evaluation.
+- a local corpus file, such as `data/LotR.txt`;
+- a local anchor CSV file, such as `data/anchors.csv`;
+- a local sentence-transformer model path.
 
-For the retrieval section, the notebook expects a local sentence-per-line corpus file. This file is also not included in the repository.
+The anchor CSV should contain:
+
+- `sentence_text`: the anchor sentence;
+- `label`: either `positive` or `negative`.
+
+The full corpus text and anchor sentences are not distributed with this repository.
 
 ## Models
 
