@@ -61,6 +61,10 @@ The scoring method computes:
 
 Positive scores indicate that a segment is closer to the positive anchors, while negative scores indicate that it is closer to the negative anchors.
 
+This trajectory notebook uses a default rolling smoothing window of 20 segments. This is a visualisation parameter and should be reported when using the generated figures.
+
+The current evaluation notebook uses sentence-level held-out examples. Segment-level evaluation is planned as a future extension because the downstream trajectory analysis operates on merged text segments.
+
 ## Supporting code: `src/` and `configs/`
 
 In addition to the notebooks, this repository includes reusable code and configuration files for topic-modelling-related experiments.
