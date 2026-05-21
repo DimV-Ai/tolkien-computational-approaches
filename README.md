@@ -1,8 +1,8 @@
 # Tolkien Computational Approaches
 
-This repository contains computational notebooks for experiments in literary NLP, focusing on sentence embeddings, anchor-based sentiment evaluation, and sentiment trajectory analysis in *The Lord of the Rings*.
+This repository contains computational notebooks, reusable scripts, and configuration files for experiments in literary NLP, focusing on sentence embeddings, anchor-based sentiment evaluation, sentiment trajectory analysis, semantic-axis modelling, and topic-distance analysis in *The Lord of the Rings*.
 
-The repository currently contains two cleaned notebooks:
+The repository currently contains three cleaned notebooks:
 
 ## Contents
 
@@ -11,6 +11,9 @@ The repository currently contains two cleaned notebooks:
 
 - `notebooks/02_anchored_sentiment_analysis.ipynb`  
   Anchored sentiment trajectory analysis over segmented literary text.
+  
+- `notebooks/03_semantic_axis_exploration`
+  Semantic-axis exploration using Light–Dark anchor examples and sentence-transformer embeddings.
 
 - `src/`  
   Reusable Python code for topic-modelling-related experiments, including BERTopic topic-distance analysis.
@@ -64,6 +67,26 @@ Positive scores indicate that a segment is closer to the positive anchors, while
 This trajectory notebook uses a default rolling smoothing window of 20 segments. This is a visualisation parameter and should be reported when using the generated figures.
 
 The current evaluation notebook uses sentence-level held-out examples. Segment-level evaluation is planned as a future extension because the downstream trajectory analysis operates on merged text segments.
+
+## Notebook: `03_semantic_axis_exploration.ipynb`
+
+This notebook explores semantic opposition axes in literary text using sentence-transformer embeddings.
+
+The current notebook focuses on a Light–Dark semantic axis. The axis is constructed from two sets of local anchor sentences: one representing the Light pole and one representing the Dark pole. Each pole is represented by a centroid in embedding space. The semantic axis is then defined as the direction between these two centroids, and text segments are projected onto that axis.
+
+This differs from the anchored sentiment scoring procedure in `02_anchored_sentiment_analysis.ipynb`. In notebook 02, the score is computed as the difference between mean similarity to positive and negative sentiment anchors. In notebook 03, the score is computed by projecting each segment embedding onto a constructed semantic axis.
+
+The notebook includes:
+
+- loading local Light and Dark axis-anchor sentences from `data/light_dark_anchors.csv`;
+- encoding semantic-axis anchors with a sentence-transformer model;
+- computing Light and Dark centroids;
+- defining the Light–Dark semantic axis;
+- projecting text segments onto the axis;
+- inspecting anchor coherence and possible outliers;
+- smoothing and visualising the resulting semantic-axis trajectory.
+
+Positive scores indicate movement toward the Light pole, while negative scores indicate movement toward the Dark pole.
 
 ## Supporting code: `src/` and `configs/`
 

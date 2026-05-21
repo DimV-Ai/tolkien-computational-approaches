@@ -43,3 +43,13 @@ Future work may include a sensitivity comparison across multiple smoothing windo
 The current evaluation notebook uses held-out sentence-level examples. This provides a controlled test of whether the model distinguishes manually labelled positive and negative examples.
 
 The downstream trajectory analysis, however, operates on merged text segments. Segment-level evaluation is therefore a planned future extension.
+
+## Light–Dark semantic-axis anchor set
+
+The Light–Dark semantic axis uses two manually selected sets of anchor sentences from the target corpus. One set represents the Light pole and the other represents the Dark pole.
+
+The anchor sentences were selected as relatively clear examples of light, darkness, shadow, illumination, obscurity, and related imagery in the target text. Ambiguous or strongly context-dependent examples were excluded where possible.
+
+The anchor texts are not included in the repository because they contain copyrighted material.
+
+The axis is oriented so that positive values indicate movement toward the Light pole and negative values indicate movement toward the Dark pole.
