@@ -148,6 +148,24 @@ The notebook requires the following main packages:
 - `matplotlib`
 - `statsmodels`
 
-## Copyright note
+
+## Open Research and Copyright Constraints
+
+This repository is designed around a reproducible-research model for copyrighted literary corpora.
+
+Due to copyright restrictions, the original texts used in this project cannot be redistributed. Instead, this repository provides:
+
+- preprocessing pipelines,
+- model training procedures,
+- evaluation scripts,
+- visualization methods,
+- configuration settings,
+- and documentation
+
+to enable methodological transparency and reproducibility without distributing the original corpus.
+
+Researchers may adapt the pipeline to their own licensed or public-domain corpora.
+
+### Copyright note
 
 Notebook outputs are cleared before committing because local runs may display copyrighted source text. The repository shares the code and workflow structure, but does not redistribute the underlying literary text.
