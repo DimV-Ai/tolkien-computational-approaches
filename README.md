@@ -96,14 +96,14 @@ This repository uses two related but mathematically different scoring methods.
 
 In `02_anchored_sentiment_analysis.ipynb`, each segment is scored by comparing its mean cosine similarity to positive and negative anchor sentences:
 
-\[
-score(x) =
+```math
+\operatorname{score}(x) =
 \frac{1}{|P|}\sum_{p \in P}\cos(e_x, e_p)
 -
 \frac{1}{|N|}\sum_{n \in N}\cos(e_x, e_n)
-\]
+```
 
-where \(e_x\) is the embedding of the text segment, \(P\) is the set of positive anchors, and \(N\) is the set of negative anchors.
+where `e_x` is the embedding of the text segment, `P` is the set of positive anchors, and `N` is the set of negative anchors.
 
 Positive values indicate greater similarity to the positive anchors; negative values indicate greater similarity to the negative anchors.
 
@@ -111,27 +111,27 @@ Positive values indicate greater similarity to the positive anchors; negative va
 
 In `03_semantic_axis_exploration.ipynb`, two semantic poles are first represented as centroids:
 
-\[
-c_A = \text{centroid}(A), \quad c_B = \text{centroid}(B)
-\]
+```math
+c_A = \operatorname{centroid}(A), \quad c_B = \operatorname{centroid}(B)
+```
 
 The semantic axis is then defined as:
 
-\[
+```math
 u = \frac{c_A - c_B}{\|c_A - c_B\|}
-\]
+```
 
 Each segment embedding is centred relative to the midpoint between the two poles:
 
-\[
+```math
 m = \frac{c_A + c_B}{2}
-\]
+```
 
 and projected onto the semantic axis:
 
-\[
-score(x) = (e_x - m) \cdot u
-\]
+```math
+\operatorname{score}(x) = (e_x - m) \cdot u
+```
 
 Positive values indicate movement toward the first semantic pole, while negative values indicate movement toward the second semantic pole.
 
@@ -206,6 +206,11 @@ The notebook requires the following main packages:
 - `matplotlib`
 - `statsmodels`
 
+## Figures
+
+The `figures/` folder contains selected visualisations produced by the notebooks and used in related publications or presentations.
+
+The figures are included as research outputs only. They do not contain the underlying copyrighted literary text. Some figures are associated with the published article “Through Peaks and Troughs: Visualising the Rhythmic Sentiment of The Lord of the Rings” in the *Journal of Tolkien Research*.
 
 ## Open Research and Copyright Constraints
 
