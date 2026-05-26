@@ -210,7 +210,7 @@ The notebook requires the following main packages:
 
 The `figures/` folder contains selected visualisations produced by the notebooks and used in related publications or presentations.
 
-The figures are included as research outputs only. They do not contain the underlying copyrighted literary text. Some figures are associated with the published article “Through Peaks and Troughs: Visualising the Rhythmic Sentiment of The Lord of the Rings” in the *Journal of Tolkien Research*.
+The figures are included as research outputs only. They do not contain the underlying copyrighted literary text. Some figures are associated with the published article [“Through Peaks and Troughs: Visualising the Rhythmic Sentiment of *The Lord of the Rings*”](https://scholar.valpo.edu/journaloftolkienresearch/vol23/iss2/3/) in the *Journal of Tolkien Research*.
 
 ## Open Research and Copyright Constraints
 
