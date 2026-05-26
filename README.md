@@ -12,7 +12,7 @@ The repository currently contains three cleaned notebooks:
 - `notebooks/02_anchored_sentiment_analysis.ipynb`  
   Anchored sentiment trajectory analysis over segmented literary text.
   
-- `notebooks/03_semantic_axis_exploration`
+- `notebooks/03_semantic_axis_exploration.ipynb`
   Semantic-axis exploration using Light–Dark anchor examples and sentence-transformer embeddings.
 
 - `src/`  
@@ -88,15 +88,62 @@ The notebook includes:
 
 Positive scores indicate movement toward the Light pole, while negative scores indicate movement toward the Dark pole.
 
+## Scoring methods
+
+This repository uses two related but mathematically different scoring methods.
+
+### Anchored sentiment scoring
+
+In `02_anchored_sentiment_analysis.ipynb`, each segment is scored by comparing its mean cosine similarity to positive and negative anchor sentences:
+
+\[
+score(x) =
+\frac{1}{|P|}\sum_{p \in P}\cos(e_x, e_p)
+-
+\frac{1}{|N|}\sum_{n \in N}\cos(e_x, e_n)
+\]
+
+where \(e_x\) is the embedding of the text segment, \(P\) is the set of positive anchors, and \(N\) is the set of negative anchors.
+
+Positive values indicate greater similarity to the positive anchors; negative values indicate greater similarity to the negative anchors.
+
+### Semantic-axis projection
+
+In `03_semantic_axis_exploration.ipynb`, two semantic poles are first represented as centroids:
+
+\[
+c_A = \text{centroid}(A), \quad c_B = \text{centroid}(B)
+\]
+
+The semantic axis is then defined as:
+
+\[
+u = \frac{c_A - c_B}{\|c_A - c_B\|}
+\]
+
+Each segment embedding is centred relative to the midpoint between the two poles:
+
+\[
+m = \frac{c_A + c_B}{2}
+\]
+
+and projected onto the semantic axis:
+
+\[
+score(x) = (e_x - m) \cdot u
+\]
+
+Positive values indicate movement toward the first semantic pole, while negative values indicate movement toward the second semantic pole.
+
 ## Supporting code: `src/` and `configs/`
 
-In addition to the notebooks, this repository includes reusable code and configuration files for topic-modelling-related experiments.
+In addition to the notebooks, this repository includes reusable code and configuration files for literary NLP experiments, including model evaluation, anchored scoring, semantic-axis analysis, trajectory plotting, and earlier topic-distance work.
 
 The `src/` folder contains Python scripts intended to move repeated logic out of notebooks and into reusable modules. At this stage, this includes code connected to BERTopic topic-distance analysis, where topic representations can be compared using embedding-based similarity.
 
 The `configs/` folder stores experiment settings separately from the code. This makes it easier to rerun or modify experiments without changing the main scripts directly.
 
-These files are part of the broader repository structure, but the currently documented notebooks focus on model evaluation and anchored sentiment trajectory analysis.
+These files support the reusable components used across the cleaned notebooks, as well as earlier topic-distance experiments.
 
 ## Data
 
@@ -120,6 +167,17 @@ The anchor CSV should contain:
 - `label`: either `positive` or `negative`.
 
 The full corpus text and anchor sentences are not distributed with this repository.
+
+To run `03_semantic_axis_exploration.ipynb`, provide:
+
+- a local corpus file, such as `data/LotR.txt`;
+- a local Light–Dark anchor CSV file, such as `data/light_dark_anchors.csv`;
+- a local sentence-transformer model path.
+
+The Light–Dark anchor CSV should contain:
+
+- `sentence_text`: the axis-anchor sentence;
+- `axis_label`: either `light` or `dark`.
 
 ## Models
 
@@ -156,7 +214,7 @@ This repository is designed around a reproducible-research model for copyrighted
 Due to copyright restrictions, the original texts used in this project cannot be redistributed. Instead, this repository provides:
 
 - preprocessing pipelines,
-- model training procedures,
+- model evaluation procedures,
 - evaluation scripts,
 - visualization methods,
 - configuration settings,
