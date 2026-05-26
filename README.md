@@ -97,7 +97,7 @@ This repository uses two related but mathematically different scoring methods.
 In `02_anchored_sentiment_analysis.ipynb`, each segment is scored by comparing its mean cosine similarity to positive and negative anchor sentences:
 
 ```math
-\operatorname{score}(x) =
+score(x) =
 \frac{1}{|P|}\sum_{p \in P}\cos(e_x, e_p)
 -
 \frac{1}{|N|}\sum_{n \in N}\cos(e_x, e_n)
@@ -112,7 +112,7 @@ Positive values indicate greater similarity to the positive anchors; negative va
 In `03_semantic_axis_exploration.ipynb`, two semantic poles are first represented as centroids:
 
 ```math
-c_A = \operatorname{centroid}(A), \quad c_B = \operatorname{centroid}(B)
+c_A = centroid(A), \quad c_B = centroid(B)
 ```
 
 The semantic axis is then defined as:
@@ -130,7 +130,7 @@ m = \frac{c_A + c_B}{2}
 and projected onto the semantic axis:
 
 ```math
-\operatorname{score}(x) = (e_x - m) \cdot u
+score(x) = (e_x - m) \cdot u
 ```
 
 Positive values indicate movement toward the first semantic pole, while negative values indicate movement toward the second semantic pole.
