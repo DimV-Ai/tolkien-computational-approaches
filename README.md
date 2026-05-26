@@ -109,7 +109,7 @@ Positive values indicate greater similarity to the positive anchors; negative va
 
 ### Semantic-axis projection
 
-In `03_semantic_axis_exploration.ipynb`, two semantic poles are first represented as centroids:
+In `03_semantic_axis_exploration.ipynb`, the score is based on vector projection rather than on a difference between two average similarity scores. Two semantic poles are first represented as centroids:
 
 ```math
 c_A = centroid(A), \quad c_B = centroid(B)
@@ -132,6 +132,8 @@ and projected onto the semantic axis:
 ```math
 score(x) = (e_x - m) \cdot u
 ```
+
+Functionally, this projection measures where a segment falls along the direction defined by the two semantic poles. The midpoint `m` centres the comparison between the poles, while the dot product with the unit axis `u` converts the segment embedding into a one-dimensional position on that semantic axis.
 
 Positive values indicate movement toward the first semantic pole, while negative values indicate movement toward the second semantic pole.
 
