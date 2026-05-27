@@ -2,9 +2,12 @@
 
 This repository contains computational notebooks, reusable scripts, and configuration files for experiments in literary NLP, focusing on sentence embeddings, anchor-based sentiment evaluation, sentiment trajectory analysis, semantic-axis modelling, and topic-distance analysis in *The Lord of the Rings*.
 
-The repository currently contains three cleaned notebooks:
+The repository currently contains four cleaned notebooks:
 
 ## Contents
+
+- `notebooks/00_train_sentence_transformer.ipynb`  
+  Local training workflow for creating a sentence-transformer model from a user-supplied literary corpus.
 
 - `notebooks/01_model_evaluation.ipynb`  
   Held-out evaluation of MiniLM and Tolkien-adapted sentence-transformer models.
@@ -16,10 +19,26 @@ The repository currently contains three cleaned notebooks:
   Semantic-axis exploration using Light–Dark anchor examples and sentence-transformer embeddings.
 
 - `src/`  
-  Reusable Python code for topic-modelling-related experiments, including BERTopic topic-distance analysis.
+  Reusable Python code for training, preprocessing, scoring, semantic-axis projection, plotting, evaluation, and earlier topic-distance experiments.
 
 - `configs/`  
   Configuration files for reproducible experiment settings, including BERTopic/topic-distance parameters.
+
+## Notebook: `00_train_sentence_transformer.ipynb`
+
+This notebook demonstrates how to train a local sentence-transformer model from a user-supplied literary corpus.
+
+The original training corpus used in this project is not included because it contains copyrighted text. To run the notebook, users should provide a local plain-text file with one sentence or short text unit per line.
+
+The notebook includes:
+
+- loading a local training corpus;
+- constructing adjacent-sentence training pairs;
+- building a sentence-transformer model from `bert-base-uncased` with mean pooling;
+- training with `MultipleNegativesRankingLoss`;
+- saving local models across selected epoch settings.
+
+The training workflow is intended to make the model-construction procedure reusable without redistributing either the copyrighted corpus or the trained model weights.
 
 ## Notebook: `01_model_evaluation.ipynb`
 
@@ -141,7 +160,7 @@ Positive values indicate movement toward the first semantic pole, while negative
 
 In addition to the notebooks, this repository includes reusable code and configuration files for literary NLP experiments, including model evaluation, anchored scoring, semantic-axis analysis, trajectory plotting, and earlier topic-distance work.
 
-The `src/` folder contains Python scripts intended to move repeated logic out of notebooks and into reusable modules. At this stage, this includes code connected to BERTopic topic-distance analysis, where topic representations can be compared using embedding-based similarity.
+The `src/` folder contains Python scripts intended to move repeated logic out of notebooks and into reusable modules. This includes utilities for local sentence-transformer training, corpus preprocessing, anchored sentiment scoring, semantic-axis projection, trajectory plotting, model evaluation, and BERTopic topic-distance analysis.
 
 The `configs/` folder stores experiment settings separately from the code. This makes it easier to rerun or modify experiments without changing the main scripts directly.
 
@@ -150,6 +169,10 @@ These files support the reusable components used across the cleaned notebooks, a
 ## Data
 
 The full text data and manually selected sentence examples are **not included** in this repository because they are drawn from copyrighted literary text.
+
+To run `00_train_sentence_transformer.ipynb`, provide a local training corpus file, such as `data/training_corpus.txt`.
+
+The expected format is a plain-text file with one sentence or short text unit per line. Empty lines are ignored. Adjacent lines are used to construct positive training pairs for sentence-transformer fine-tuning.
 
 To run `01_model_evaluation.ipynb`, provide an evaluation CSV with these columns:
 
@@ -182,6 +205,8 @@ The Light–Dark anchor CSV should contain:
 - `axis_label`: either `light` or `dark`.
 
 ## Models
+
+The training notebook can create local sentence-transformer models from a user-supplied corpus. These trained models are not included in the repository.
 
 The baseline model is loaded from Hugging Face:
 
@@ -221,7 +246,7 @@ This repository is designed around a reproducible-research model for copyrighted
 Due to copyright restrictions, the original texts used in this project cannot be redistributed. Instead, this repository provides:
 
 - preprocessing pipelines,
-- model evaluation procedures,
+- model training and evaluation procedures,
 - evaluation scripts,
 - visualization methods,
 - configuration settings,
