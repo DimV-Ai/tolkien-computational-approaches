@@ -15,7 +15,11 @@ def l2_normalise(vector: np.ndarray) -> np.ndarray:
     return vector / np.maximum(np.linalg.norm(vector), 1e-12)
 
 def compute_centroid(embeddings: np.ndarray) -> np.ndarray:
-    """Compute and normalise the centroid of a set of embeddings."""
+    """Compute and normalise the centroid of a set of embeddings.
+        Returns a 1D vector with shape (embedding_dim,). This is suitable for
+        semantic-axis construction and projection, where the axis vector is also
+        represented as a 1D vector.
+    """
     return l2_normalise(embeddings.mean(axis=0))
 
 def project_score_from_embedding(
